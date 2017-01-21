@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#3d9bfa">
+    <meta name="google-site-verification" content="GAhYWMESp-t56DXrZTkt9ukt4BwttyzEr_Cwduw654s">
+
+    <title>Crossroads District</title>
+
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- build:css styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="/bower_components/splash-screen/dist/splash.min.css">
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:css styles/main.css -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+
+  </head>
+  <body>
+    <!--[if lt IE 10]>
+      <p class="browserupgrade">You are using an <strong>outdated</strong> browser.
+      Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <div id="map"></div>
+    <div id="pano"></div>
+
+    <form id="inputbar" data-bind="event: { keyup: filter }">
+      <img
+        class="input-icon"
+        src="images/icons/icn-menubar.png"
+        alt="Menu"
+        data-bind="click: toggleMenu"
+      >
+      <input
+        class="form-control input"
+        type="search"
+        name="filter"
+        placeholder="Filter Locations"
+        autocomplete="off"
+        data-bind="value: locationFilter, valueUpdate: 'keyup'"
+      >
+      <img
+        class="input-icon"
+        src="images/icons/icn-filter.png"
+        alt="Filter"
+        data-bind="click: filter"
+      >
+    </form>
+
+    <ul class="filter-list" data-bind="foreach: locations, visible: menuVisible">
+      <li class="filter-item" data-bind="text: name, click: $parent.openInfo"></li>
+    </ul>
+
+    <ul class="filter-list" data-bind="foreach: filteredLocations, visible: filteredVisible">
+      <li class="filter-item" data-bind="text: name, click: $parent.openInfo"></li>
+    </ul>
+
+    <div id="mapErrorModal" class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-body center-block">
+            <img src="images/icons/icn-broken-link.png" alt="Broken Link" />
+            <h3>Oops, something went wrong!</h3>
+            <p class="error-msg"></p>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <!-- build:js scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/bower_components/knockout/dist/knockout.js"></script>
+    <script src="/bower_components/splash-screen/dist/splash.js"></script>
+    <script src="/bower_components/splash-screen/dist/splash.min.js"></script>
+    <script src="/bower_components/oauth-signature/dist/oauth-signature.min.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js scripts/plugins.js -->
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/affix.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/alert.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/dropdown.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/tooltip.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/modal.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/transition.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/button.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/popover.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/carousel.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/scrollspy.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/collapse.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/tab.js"></script>
+    <!-- endbuild -->
+
+    <!-- build:js scripts/app.js -->
+    <script src="scripts/utils.js"></script>
+    <script src="scripts/models/locations.js"></script>
+    <script src="scripts/LocationService.js"></script>
+    <script src="scripts/app.js"></script>
+    <script
+      async defer
+      src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBom-cjRo-fy7JXK7UcX--BhKweCRXCGSM&libraries=places&callback=initializeMap"
+      onerror="errorHandler()">
+    </script>
+    <!-- endbuild -->
+  </body>
+</html>

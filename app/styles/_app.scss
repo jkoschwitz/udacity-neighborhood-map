@@ -1,0 +1,80 @@
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+#map {
+  height: 100%;
+  width: 50%;
+  position: absolute;
+  left: 50%;
+  z-index: 1;
+}
+
+#pano {
+  height: 100%;
+  width: 50%;
+  position: absolute;
+  left: 0;
+  z-index: 0;
+  background-color: red;
+}
+
+.filter-list {
+  display: block;
+  position: relative;
+  max-width: 400px;
+  margin: 5px 15px;
+  padding: 0;
+  z-index: 1;
+  background-color: $flat-white;
+  border-radius: 2px;
+
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(128,128,128,0.5);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(128,128,128,0.5);
+  box-shadow: 0px 0px 5px 0px rgba(128,128,128,0.5);
+
+  .filter-item {
+    list-style-type: none;
+    padding: 10px;
+  }
+
+  .filter-item:not(:last-of-type) {
+    border-bottom: 1px solid $light-gray;
+  }
+}
+
+.modal-dialog {
+  width: 80%;
+  margin: 10vh auto;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px;
+  background-color: $light-gray;
+  color: $slate;
+
+  img {
+    height: 64px;
+    width: 64px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    opacity: .8;
+  }
+
+  h3 {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+  }
+
+  p {
+    text-align: center;
+    font-size: 15px;
+  }
+
+}
